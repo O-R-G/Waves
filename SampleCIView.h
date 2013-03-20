@@ -49,7 +49,12 @@
 #import <Cocoa/Cocoa.h>
 #import <QuartzCore/CoreImage.h>
 
-@interface SampleCIView : NSOpenGLView
+@interface SampleCIView : NSOpenGLView{
+    
+    NSTimeInterval      lastFrameReferenceTime;		// used to compute change in time
+    NSTimer            *timer;						// timer to update the view content
+
+}
 
 @property (nonatomic, strong) CIImage *image;
 
@@ -67,5 +72,6 @@
 
 // If defined in the view subclass, called when rendering
 - (void)drawRect:(NSRect)bounds inCIContext:(CIContext *)ctx;
+- (void)initUpdateTimer;
 
 @end

@@ -51,6 +51,9 @@
 #import <OpenGL/OpenGL.h>
 #import <OpenGL/gl.h>
 
+static const NSTimeInterval  kScheduledTimerInSeconds      = 1.0f/60.0f;
+
+
 @interface SampleCIView ()
 
 @property (nonatomic, strong) CIContext *context;
@@ -154,7 +157,47 @@
     glStencilMask(0);
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glHint(GL_TRANSFORM_HINT_APPLE, GL_FASTEST);
+    
+ 
 }
+
+
+
+//---------------------------------------------------------------------------------
+
+- (void) heartbeat
+{
+   
+	[self drawRect:[self bounds]];
+} // heartbeat
+
+//---------------------------------------------------------------------------------
+
+- (void) initUpdateTimer
+{
+	timer = [NSTimer timerWithTimeInterval:kScheduledTimerInSeconds
+									target:self
+								  selector:@selector(heartbeat)
+								  userInfo:nil
+								   repeats:YES];
+	
+	[[NSRunLoop currentRunLoop] addTimer:timer
+								 forMode:NSDefaultRunLoopMode];
+	
+	[[NSRunLoop currentRunLoop] addTimer:timer
+								 forMode:NSEventTrackingRunLoopMode];
+} // initUpdateTimer
+
+
+- (NSTimeInterval) updateTimeDelta
+{
+	NSTimeInterval  timeNow   = [NSDate timeIntervalSinceReferenceDate];
+	NSTimeInterval  timeDelta = timeNow - lastFrameReferenceTime;
+	
+	return  timeDelta;
+} // updateTimeDelta
+
+
 
 
 - (void)viewBoundsDidChange:(NSRect)bounds
@@ -249,7 +292,7 @@
 		[self displayProfileChanged:nil];
 	}
     
-    CGRect integralRect = CGRectIntegral(NSRectToCGRect(rect));
+     CGRect integralRect = CGRectIntegral(NSRectToCGRect(rect));
 	
     if ([NSGraphicsContext currentContextDrawingToScreen])
     {
@@ -260,7 +303,8 @@
          */
         CGRect rr = CGRectIntersection(CGRectInset (integralRect, -1.0f, -1.0f), NSRectToCGRect(_lastBounds));
 		
-		glScissor(integralRect.origin.x, integralRect.origin.y, integralRect.size.width, integralRect.size.height);
+      	
+        glScissor(integralRect.origin.x, integralRect.origin.y, integralRect.size.width, integralRect.size.height);
 		glEnable(GL_SCISSOR_TEST);
 		
 		glClear(GL_COLOR_BUFFER_BIT);

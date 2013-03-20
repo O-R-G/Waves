@@ -94,6 +94,7 @@
     CIFilter *filter = [CIFilter filterWithName:@"CIConstantColorGenerator" keysAndValues:@"inputColor", [CIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0], nil];
     [newAccumulator setImage:[filter valueForKey:@"outputImage"]];
 
+    /*
     if (self.imageAccumulator != nil)
     {
         filter = [CIFilter filterWithName:@"CISourceOverCompositing"
@@ -105,6 +106,7 @@
     self.imageAccumulator = newAccumulator;
 
     [self setImage:[self.imageAccumulator image]];
+     */
 }
 
 

@@ -12,9 +12,14 @@
 #import "SampleCIView.h"
 #import "WaveFormDef.h"
 
-@interface Waves : SampleCIView
+@interface Waves : SampleCIView {
+    
+ 
+    
+}
 
 - (void)start;
+- (void)initUpdateTimer;
 @end
 
 
