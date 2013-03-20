@@ -51,7 +51,7 @@
 #import <OpenGL/OpenGL.h>
 #import <OpenGL/gl.h>
 
-static const NSTimeInterval  kScheduledTimerInSeconds      = 1.0f/60.0f;
+static const NSTimeInterval  kScheduledTimerInSeconds      = 1.0f/24.0f;
 
 
 @interface SampleCIView ()

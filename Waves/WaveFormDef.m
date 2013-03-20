@@ -64,8 +64,11 @@ int *b;
     // since sin ranges from 0 to 2*PI, prevent float overflow by reseting value
     if(newSinOffset > (4.f * M_PI)){
         _sinOffset = newSinOffset - (4.f * M_PI);
+    } else if (newSinOffset < 0){
+        _sinOffset = (4.f * M_PI) + newSinOffset;
     } else {
         _sinOffset = newSinOffset;
+
     }
     
     

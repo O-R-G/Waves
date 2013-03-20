@@ -36,9 +36,9 @@
 - (void)start
 {
     
-    testWave = [[WaveFormDef alloc ]initWithHz:1.f withAmp:2.f withHzLength:100.f];
+    testWave = [[WaveFormDef alloc ]initWithHz:1.f withAmp:2.f withHzLength:200.f];
     
-    testWave2 = [[WaveFormDef alloc ]initWithHz:.5 withAmp:2.f withHzLength:100.f];
+    testWave2 = [[WaveFormDef alloc ]initWithHz:.5 withAmp:2.f withHzLength:200.f];
     
     //testWave3.sinOffset = 1.5;
     
@@ -58,16 +58,16 @@
 {
     [self drawWaveForm:testWave];
     [self drawWaveForm:testWave2];
-    testWave2.sinOffset += .05;
+    testWave2.sinOffset -= .05;
     testWave.sinOffset += .1;
     
 }
 
 - (void) drawWaveForm: (WaveFormDef*)waveForm
 {
-    for(float i = 0; i < 4.f * 2.f * M_PI; i+=.5){
+    for(float i = 0; i < 4.f * 2.f * M_PI; i+=.25){
         
-        [self drawDot:[waveForm findPointAt:(float)i xOffset:0 yOffset:150.f]];
+        [self drawDot:[waveForm findPointAt:(float)i xOffset:0 yOffset:300.f]];
     }
     
          
@@ -88,14 +88,10 @@
     }
     
     if (self.image != nil) {
-        
-          //glClearColor(0.075f, 0.075f, 0.075f, 1.0f);
-        //glClear(GL_COLOR_BUFFER_BIT);
-        //glLoadIdentity();
-        
+   
         // clear the screen before redraw
         CIImageAccumulator *newAccumulator = [[CIImageAccumulator alloc] initWithExtent:*(CGRect *)&bounds format:kCIFormatRGBA16];
-        CIFilter *filter = [CIFilter filterWithName:@"CIConstantColorGenerator" keysAndValues:@"inputColor", [CIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0], nil];
+        CIFilter *filter = [CIFilter filterWithName:@"CIConstantColorGenerator" keysAndValues:@"inputColor", [CIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0], nil];
         [newAccumulator setImage:[filter valueForKey:@"outputImage"]];
         
             
@@ -117,7 +113,7 @@
     if (self != nil) {
         _brushSize = 2.0;
         
-        _color = [NSColor colorWithDeviceRed:0.0 green:0.0 blue:0.0 alpha:1.0];
+        _color = [NSColor colorWithDeviceRed:1.0 green:1.0 blue:1.0 alpha:1.0];
         
         _brushFilter = [CIFilter filterWithName: @"CIRadialGradient" keysAndValues:
                         @"inputColor1", [CIColor colorWithRed:0.0 green:0.0
