@@ -26,8 +26,13 @@
 {
 
     BOOL readyToDraw;
-    WaveFormDef *testWave;
-    WaveFormDef *testWave2;
+    WaveFormDef *Ala;
+    WaveFormDef *Bsi;
+    WaveFormDef *Cdo;
+    WaveFormDef *Dre;
+    WaveFormDef *Emi;
+    WaveFormDef *Ffa;
+    WaveFormDef *Gsol;
 }
 
 /* *****************************
@@ -35,10 +40,18 @@
  ******************************* */
 - (void)start
 {
-    
-    testWave = [[WaveFormDef alloc ]initWithHz:1.f withAmp:2.f withHzLength:200.f];
-    
-    testWave2 = [[WaveFormDef alloc ]initWithHz:.5 withAmp:2.f withHzLength:200.f];
+    /*
+    Ala = [[WaveFormDef alloc ]initWithHz:2.2f withAmp:1.f withHzLength:700.f];
+    Bsi = [[WaveFormDef alloc ]initWithHz:2.47f withAmp:1.12f withHzLength:700.f];
+    Cdo = [[WaveFormDef alloc ]initWithHz:2.62f withAmp:1.19f withHzLength:700.f];
+     */
+    Ala = [[WaveFormDef alloc ]initWithHz:2.2f withAmp:1.f withWaveLength:157.f*2.f];
+    Bsi = [[WaveFormDef alloc ]initWithHz:2.47f withAmp:1.f withWaveLength:140.f*2.f];
+    Cdo = [[WaveFormDef alloc ]initWithHz:2.62f withAmp:1.f withWaveLength:132.f*2.f];
+    Dre = [[WaveFormDef alloc ]initWithHz:2.94f withAmp:1.f withWaveLength:117.f*2.f];
+    Emi = [[WaveFormDef alloc ]initWithHz:3.29f withAmp:1.f withWaveLength:105.f*2.f];
+    Ffa = [[WaveFormDef alloc ]initWithHz:3.49f withAmp:1.f withWaveLength:98.8f*2.f];
+    Gsol = [[WaveFormDef alloc ]initWithHz:3.92f withAmp:1.f withWaveLength:88.f*2.f];
     
     //testWave3.sinOffset = 1.5;
     
@@ -56,18 +69,31 @@
 
 - (void) animateMe
 {
-    [self drawWaveForm:testWave];
-    [self drawWaveForm:testWave2];
-    testWave2.sinOffset -= .05;
-    testWave.sinOffset += .1;
+    [self drawWaveForm:Ala];
+    [self drawWaveForm:Bsi];
+    [self drawWaveForm:Cdo];
+    [self drawWaveForm:Dre];
+    [self drawWaveForm:Emi];
+    [self drawWaveForm:Ffa];
+    [self drawWaveForm:Gsol];
+    
+    float offset = .015;
+    
+    Ala.sinOffset += offset;
+    Bsi.sinOffset += offset;
+    Cdo.sinOffset += offset;
+    Dre.sinOffset += offset;
+    Emi.sinOffset += offset;
+    Ffa.sinOffset += offset;
+    Gsol.sinOffset += offset;
     
 }
 
 - (void) drawWaveForm: (WaveFormDef*)waveForm
 {
-    for(float i = 0; i < 4.f * 2.f * M_PI; i+=.25){
+    for(float i = 0; i < 2.f * M_PI; i+=.05){
         
-        [self drawDot:[waveForm findPointAt:(float)i xOffset:0 yOffset:300.f]];
+        [self drawDot:[waveForm findPointAt:(float)i xOffset:50 yOffset:300.f]];
     }
     
          

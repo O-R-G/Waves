@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Waves/Waves.m"
-         timestampString = "385501362.758476"
+         timestampString = "385958487.516152"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "122"
-         endingLineNumber = "122"
+         startingLineNumber = "148"
+         endingLineNumber = "148"
          landmarkName = "-initWithFrame:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Waves/Waves.m"
-         timestampString = "385499886.347225"
+         timestampString = "385958487.516152"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "85"
-         endingLineNumber = "85"
+         startingLineNumber = "111"
+         endingLineNumber = "111"
          landmarkName = "-drawRect:inCIContext:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Waves/WaveFormDef.m"
-         timestampString = "385435812.078692"
+         timestampString = "385941327.841369"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "58"
-         endingLineNumber = "58"
+         startingLineNumber = "80"
+         endingLineNumber = "80"
          landmarkName = "-findPointAt:xOffset:yOffset:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Waves/WaveFormDef.h"
-         timestampString = "385499455.749872"
+         timestampString = "385941327.841369"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "39"
-         endingLineNumber = "39">
+         startingLineNumber = "43"
+         endingLineNumber = "43">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -123,11 +123,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Waves/Waves.m"
-         timestampString = "385501362.758476"
+         timestampString = "385958487.516152"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "104"
-         endingLineNumber = "104"
+         startingLineNumber = "130"
+         endingLineNumber = "130"
          landmarkName = "-drawRect:inCIContext:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -136,11 +136,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Waves/Waves.m"
-         timestampString = "385501362.758476"
+         timestampString = "385958487.516152"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "102"
-         endingLineNumber = "102"
+         startingLineNumber = "128"
+         endingLineNumber = "128"
          landmarkName = "-drawRect:inCIContext:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -155,6 +155,32 @@
          startingLineNumber = "308"
          endingLineNumber = "308"
          landmarkName = "-drawRect:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Waves/WaveFormDef.m"
+         timestampString = "385941327.841369"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "88"
+         endingLineNumber = "88"
+         landmarkName = "-setSinOffset:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Waves/WaveFormDef.m"
+         timestampString = "385941327.841369"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "90"
+         endingLineNumber = "90"
+         landmarkName = "-setSinOffset:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
