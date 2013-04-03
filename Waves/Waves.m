@@ -47,6 +47,7 @@
     Bsi = [[WaveFormDef alloc ]initWithHz:2.47f withAmp:1.12f withHzLength:700.f];
     Cdo = [[WaveFormDef alloc ]initWithHz:2.62f withAmp:1.19f withHzLength:700.f];
      */
+    
     Ala = [[WaveFormDef alloc ]initWithHz:2.2f withAmp:1.f withWaveLength:157.f*2.f];
     Bsi = [[WaveFormDef alloc ]initWithHz:2.47f withAmp:1.f withWaveLength:140.f*2.f];
     Cdo = [[WaveFormDef alloc ]initWithHz:2.62f withAmp:1.f withWaveLength:132.f*2.f];
