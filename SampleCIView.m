@@ -102,8 +102,22 @@ static const NSTimeInterval  kScheduledTimerInSeconds      = 1.0f/60.0f;
 
 - (void)dealloc
 {
+    [self deallocTimer];
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+- (void) deallocTimer
+{
+	if( timer )
+	{
+		[timer invalidate];
+		//[timer release];
+		
+		timer = nil;
+	} // if
+} // deallocTimer
+
+
 
 
 - (void)setContextOptions:(NSDictionary *)dict
@@ -181,21 +195,10 @@ static const NSTimeInterval  kScheduledTimerInSeconds      = 1.0f/60.0f;
 								  userInfo:nil
 								   repeats:YES];
 	
-	[[NSRunLoop currentRunLoop] addTimer:timer
-								 forMode:NSDefaultRunLoopMode];
+	[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 	
-	[[NSRunLoop currentRunLoop] addTimer:timer
-								 forMode:NSEventTrackingRunLoopMode];
+	//[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSEventTrackingRunLoopMode];
 } // initUpdateTimer
-
-
-- (NSTimeInterval) updateTimeDelta
-{
-	NSTimeInterval  timeNow   = [NSDate timeIntervalSinceReferenceDate];
-	NSTimeInterval  timeDelta = timeNow - lastFrameReferenceTime;
-	
-	return  timeDelta;
-} // updateTimeDelta
 
 
 
@@ -301,14 +304,15 @@ static const NSTimeInterval  kScheduledTimerInSeconds      = 1.0f/60.0f;
 		/*
          Clear the specified subrect of the OpenGL surface then render the image into the view. Use the GL scissor test to clip to the subrect. Ask CoreImage to generate an extra pixel in case it has to interpolate (allow for hardware inaccuracies).
          */
+       
         CGRect rr = CGRectIntersection(CGRectInset (integralRect, -1.0f, -1.0f), NSRectToCGRect(_lastBounds));
 		
-      	
+      	 /*
         glScissor(integralRect.origin.x, integralRect.origin.y, integralRect.size.width, integralRect.size.height);
 		glEnable(GL_SCISSOR_TEST);
 		
 		glClear(GL_COLOR_BUFFER_BIT);
-        
+        */
 		if ([self respondsToSelector:@selector(drawRect:inCIContext:)]) {
             // For Subclasses to provide their own drawing method.
 			[(id <SampleCIViewDraw>)self drawRect:NSRectFromCGRect(rr) inCIContext:self.context];
@@ -320,7 +324,7 @@ static const NSTimeInterval  kScheduledTimerInSeconds      = 1.0f/60.0f;
             }
 		}
 		
-		glDisable(GL_SCISSOR_TEST);
+		//glDisable(GL_SCISSOR_TEST);
 		
 		/*
          Flush the OpenGL command stream. If the view is double buffered this should be replaced by [[self openGLContext] flushBuffer].
