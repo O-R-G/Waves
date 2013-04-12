@@ -174,9 +174,6 @@
 {
     self = [super initWithFrame:frame];
     if (self != nil) {
-                
-        return self;
-        
         _brushSize = 1.0;
         
         _color = [NSColor colorWithDeviceRed:0.5 green:0.0 blue:1.0 alpha:.75];
