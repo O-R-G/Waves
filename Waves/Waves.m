@@ -73,11 +73,11 @@
 {
     [self drawWaveForm:Ala];
     [self drawWaveForm:Bsi];
-    //[self drawWaveForm:Cdo];
-    //[self drawWaveForm:Dre];
-    //[self drawWaveForm:Emi];
-    //[self drawWaveForm:Ffa];
-    //[self drawWaveForm:Gsol];
+    [self drawWaveForm:Cdo];
+    [self drawWaveForm:Dre];
+    // [self drawWaveForm:Emi];
+    // [self drawWaveForm:Ffa];
+    // [self drawWaveForm:Gsol];
     
     float offset = .015;
     
@@ -117,18 +117,14 @@
     CIVector *inputCenter = [CIVector vectorWithX:loc.x Y:loc.y];
     [brushFilter setValue:inputCenter forKey:@"inputCenter"];
     
-    
     CIFilter *compositeFilter = self.compositeFilter;
     
     [compositeFilter setValue:[brushFilter valueForKey:@"outputImage"] forKey:@"inputImage"];
     [compositeFilter setValue:[self.imageAccumulator image] forKey:@"inputBackgroundImage"];
-   
      
     CGFloat brushSize = self.brushSize;
      
-    
     [brushFilter setValue:inputCenter forKey:@"inputCenter"];
-    
     
     CGRect rect = CGRectMake(loc.x-brushSize, loc.y-brushSize, 2.0*brushSize, 2.0*brushSize);
     
@@ -148,16 +144,15 @@
     
     // this is a workaround to use openGlview subclass as there is no
     // standard init call back once it is loaded into view.
+
     if(!readyToDraw){
         
-                
         readyToDraw = YES;
         [self start];
     }
     
     if (self.image != nil) {
    
-       
         // clear the screen before redraw
         
         CIFilter *filter = [CIFilter filterWithName:@"CIConstantColorGenerator" keysAndValues:@"inputColor", [CIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0], nil];
@@ -178,17 +173,15 @@
 {
     self = [super initWithFrame:frame];
     if (self != nil) {
-        _brushSize = 5.0;
+        _brushSize = 1.0;
         
-        _color = [NSColor colorWithDeviceRed:1.0 green:1.0 blue:1.0 alpha:.5];
+        _color = [NSColor colorWithDeviceRed:0.5 green:0.0 blue:1.0 alpha:.75];
         
         _brushFilter = [CIFilter filterWithName: @"CIRadialGradient" keysAndValues:
                         @"inputColor1", [CIColor colorWithRed:1.0 green:1.0
                                                          blue:1.0 alpha:0.0], @"inputRadius0", @0.0, nil];
         
-        _compositeFilter = [CIFilter filterWithName: @"CISourceOverCompositing"];
-        
-        
+        _compositeFilter = [CIFilter filterWithName: @"CISourceOverCompositing"];        
         
     }
     
@@ -244,7 +237,6 @@
     
     CIVector *inputCenter = [CIVector vectorWithX:loc.x Y:loc.y];
     [brushFilter setValue:inputCenter forKey:@"inputCenter"];
-    
     
     CIFilter *compositeFilter = self.compositeFilter;
     
