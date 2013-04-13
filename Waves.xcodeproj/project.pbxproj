@@ -18,12 +18,8 @@
 		6347376416D5B2FA008D7B04 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6347376216D5B2FA008D7B04 /* InfoPlist.strings */; };
 		6347376716D5B2FA008D7B04 /* WavesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6347376616D5B2FA008D7B04 /* WavesTests.m */; };
 		6347377116D5B587008D7B04 /* Window.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6347377016D5B587008D7B04 /* Window.xib */; };
-		6366E66516D5C02D006A5079 /* SampleCIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6366E66416D5C02D006A5079 /* SampleCIView.m */; };
-		6366E66616D5C02D006A5079 /* SampleCIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6366E66416D5C02D006A5079 /* SampleCIView.m */; };
 		6366E66916D5C5DF006A5079 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6366E66816D5C5DF006A5079 /* OpenGL.framework */; };
 		6366E66B16D5C5F0006A5079 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6366E66A16D5C5F0006A5079 /* QuartzCore.framework */; };
-		6366E66E16D5CC0D006A5079 /* CIMicroPaintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6366E66D16D5CC0D006A5079 /* CIMicroPaintView.m */; };
-		6366E66F16D5CC0D006A5079 /* CIMicroPaintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6366E66D16D5CC0D006A5079 /* CIMicroPaintView.m */; };
 		6366E67216D6A435006A5079 /* Waves.m in Sources */ = {isa = PBXBuildFile; fileRef = 6366E67116D6A435006A5079 /* Waves.m */; };
 		6366E67316D6A435006A5079 /* Waves.m in Sources */ = {isa = PBXBuildFile; fileRef = 6366E67116D6A435006A5079 /* Waves.m */; };
 		63AEAE3216DAB4450019AEBA /* WaveFormDef.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AEAE3116DAB4450019AEBA /* WaveFormDef.m */; };
@@ -60,12 +56,8 @@
 		6347376516D5B2FA008D7B04 /* WavesTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WavesTests.h; sourceTree = "<group>"; };
 		6347376616D5B2FA008D7B04 /* WavesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WavesTests.m; sourceTree = "<group>"; };
 		6347377016D5B587008D7B04 /* Window.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Window.xib; sourceTree = "<group>"; };
-		6366E66316D5C02D006A5079 /* SampleCIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SampleCIView.h; path = ../SampleCIView.h; sourceTree = "<group>"; };
-		6366E66416D5C02D006A5079 /* SampleCIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SampleCIView.m; path = ../SampleCIView.m; sourceTree = "<group>"; };
 		6366E66816D5C5DF006A5079 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		6366E66A16D5C5F0006A5079 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		6366E66C16D5CC0C006A5079 /* CIMicroPaintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIMicroPaintView.h; sourceTree = "<group>"; };
-		6366E66D16D5CC0D006A5079 /* CIMicroPaintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CIMicroPaintView.m; sourceTree = "<group>"; };
 		6366E67016D6A435006A5079 /* Waves.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Waves.h; sourceTree = "<group>"; };
 		6366E67116D6A435006A5079 /* Waves.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Waves.m; sourceTree = "<group>"; };
 		63AEAE3016DAB4450019AEBA /* WaveFormDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveFormDef.h; sourceTree = "<group>"; };
@@ -143,10 +135,6 @@
 				6366E67116D6A435006A5079 /* Waves.m */,
 				63AEAE3016DAB4450019AEBA /* WaveFormDef.h */,
 				63AEAE3116DAB4450019AEBA /* WaveFormDef.m */,
-				6366E66316D5C02D006A5079 /* SampleCIView.h */,
-				6366E66416D5C02D006A5079 /* SampleCIView.m */,
-				6366E66C16D5CC0C006A5079 /* CIMicroPaintView.h */,
-				6366E66D16D5CC0D006A5079 /* CIMicroPaintView.m */,
 				6347374E16D5B2F8008D7B04 /* WavesAppDelegate.h */,
 				6347374F16D5B2F8008D7B04 /* WavesAppDelegate.m */,
 				6347377016D5B587008D7B04 /* Window.xib */,
@@ -299,8 +287,6 @@
 			files = (
 				6347374916D5B2F8008D7B04 /* main.m in Sources */,
 				6347375016D5B2F8008D7B04 /* WavesAppDelegate.m in Sources */,
-				6366E66516D5C02D006A5079 /* SampleCIView.m in Sources */,
-				6366E66E16D5CC0D006A5079 /* CIMicroPaintView.m in Sources */,
 				6366E67216D6A435006A5079 /* Waves.m in Sources */,
 				63AEAE3216DAB4450019AEBA /* WaveFormDef.m in Sources */,
 			);
@@ -311,8 +297,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6347376716D5B2FA008D7B04 /* WavesTests.m in Sources */,
-				6366E66616D5C02D006A5079 /* SampleCIView.m in Sources */,
-				6366E66F16D5CC0D006A5079 /* CIMicroPaintView.m in Sources */,
 				6366E67316D6A435006A5079 /* Waves.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

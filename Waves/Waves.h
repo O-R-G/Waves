@@ -9,13 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 #import <QuartzCore/QuartzCore.h>
-#import "SampleCIView.h"
+
 #import "WaveFormDef.h"
 
-@interface Waves : SampleCIView {
+static const NSTimeInterval  kScheduledTimerInSeconds      = 1.0f/30.0f;
+
+
+@interface Waves : NSView{
     
  
-    
+    NSTimer            *timer;						// timer to update the view content
+
 }
 
 - (void)start;

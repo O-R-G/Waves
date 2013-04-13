@@ -1320,7 +1320,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="196560663"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
@@ -2023,14 +2023,6 @@
 						<reference key="destination" ref="196560663"/>
 					</object>
 					<int key="connectionID">548</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">wavesInst</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="196560663"/>
-					</object>
-					<int key="connectionID">549</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">

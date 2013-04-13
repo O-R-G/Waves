@@ -8,11 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 #import <QuartzCore/QuartzCore.h>
-#import "SampleCIView.h"
+
 #import "Waves.h"
 #import "WavesAppDelegate.h"
-#import "SampleCIView.h"
-#import "CIMicroPaintView.h"
+
 
 
 

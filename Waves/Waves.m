@@ -35,6 +35,42 @@
     WaveFormDef *Gsol;
 }
 
+
+//---------------------------------------------------------------------------------
+
+- (void) heartbeat
+{
+     [self animateMe];
+     [self displayIfNeeded];
+    
+	//[self drawRect:[self bounds]];
+} // heartbeat
+
+//---------------------------------------------------------------------------------
+
+- (void) initUpdateTimer
+{
+    /*
+    CFRunLoopTimerContext loopContext = {0, self, NULL, NULL, NULL};
+    timer = CFRunLoopTimerCreate(NULL, timeStamp, 1.0/[self desiredFrameRate], 0, 0, heartbeat, &loopContext);
+    CFRunLoopAddTimer(CFRunLoopGetCurrent(), timer, kCFRunLoopCommonModes);
+*/
+    
+	timer = [NSTimer timerWithTimeInterval:kScheduledTimerInSeconds
+									target:self
+								  selector:@selector(heartbeat)
+								  userInfo:nil
+								   repeats:YES];
+	
+	[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+	
+	//[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSEventTrackingRunLoopMode];
+} // initUpdateTimer
+
+
+
+
+
 /* *****************************
    Init function run once the view frame is loaded and visible
  ******************************* */
@@ -54,31 +90,18 @@
     Emi = [[WaveFormDef alloc ]initWithHz:3.29f withAmp:1.f withWaveLength:105.f*2.f];
     Ffa = [[WaveFormDef alloc ]initWithHz:3.49f withAmp:1.f withWaveLength:98.8f*2.f];
     Gsol = [[WaveFormDef alloc ]initWithHz:3.92f withAmp:1.f withWaveLength:88.f*2.f];
-    
-    //testWave3.sinOffset = 1.5;
-    
-    //testWave.res = 18.f;
-    
-    // New timer for updating OpenGL view
+
+
 	[self initUpdateTimer];
     
-    //[self drawWaveForm:testWave];
-    //[self drawWaveForm:testWave2];
-    //[self drawWaveForm:testWave3];
+
     
 }
 
 
 - (void) animateMe
 {
-    [self drawWaveForm:Ala];
-    [self drawWaveForm:Bsi];
-    [self drawWaveForm:Cdo];
-    [self drawWaveForm:Dre];
-    // [self drawWaveForm:Emi];
-    // [self drawWaveForm:Ffa];
-    // [self drawWaveForm:Gsol];
-    
+       
     float offset = .015;
     
     Ala.sinOffset += offset;
@@ -89,13 +112,16 @@
     Ffa.sinOffset += offset;
     Gsol.sinOffset += offset;
     
+    [self setNeedsDisplay:YES];
+    
+    
 }
 
 - (void) drawWaveForm: (WaveFormDef*)waveForm
 {
     for(float i = 0; i < 2.f * M_PI; i+=.05){
         
-        [self drawDot:[waveForm findPointAt:(float)i xOffset:50 yOffset:300.f]];
+        [self drawDot:[waveForm findPointAt:(float)i xOffset:5 yOffset:200.f]];
     }
     
          
@@ -104,158 +130,59 @@
 
 - (void)drawDot:(NSPoint)loc
 {
+   
+    CGContextRef myContext = [[NSGraphicsContext currentContext] graphicsPort];
+    CGContextSetRGBFillColor (myContext, 1, 0, 0, 1 );// 3
     
-    CIFilter *brushFilter = self.brushFilter;
-    
-    //NSPoint  loc = [self convertPoint:[event locationInWindow] fromView:nil];
-    
-    [brushFilter setValue:@(self.brushSize) forKey:@"inputRadius1"];
-    
-    CIColor *cicolor = [[CIColor alloc] initWithColor:self.color];
-    [brushFilter setValue:cicolor forKey:@"inputColor0"];
-    
-    CIVector *inputCenter = [CIVector vectorWithX:loc.x Y:loc.y];
-    [brushFilter setValue:inputCenter forKey:@"inputCenter"];
-    
-    CIFilter *compositeFilter = self.compositeFilter;
-    
-    [compositeFilter setValue:[brushFilter valueForKey:@"outputImage"] forKey:@"inputImage"];
-    [compositeFilter setValue:[self.imageAccumulator image] forKey:@"inputBackgroundImage"];
-     
-    CGFloat brushSize = self.brushSize;
-     
-    [brushFilter setValue:inputCenter forKey:@"inputCenter"];
-    
-    CGRect rect = CGRectMake(loc.x-brushSize, loc.y-brushSize, 2.0*brushSize, 2.0*brushSize);
-    
-    //flag for a redraw
-    //[self.imageAccumulator setImage:[compositeFilter valueForKey:@"outputImage"] dirtyRect:rect];
-    [self.imageAccumulator setImage:[compositeFilter valueForKey:@"outputImage"] dirtyRect:rect];
-     [self setImage:[self.imageAccumulator image] dirtyRect:rect];
-    
+    //CGContextFillRect (myContext, CGRectMake (loc.x, loc.y, 1, 1));
+    NSRect dotRect = CGRectMake (loc.x, loc.y, 1, 1);
+    [[NSBezierPath bezierPathWithOvalInRect:NSInsetRect(dotRect, 2, 2)] fill];
     
 }
 
+- (void) clearScreen:(NSRect)bounds
+{   
+    CGContextRef myContext = [[NSGraphicsContext currentContext] graphicsPort];
+    CGContextClearRect (myContext, bounds);
+}
 
-// custom drawrect function - used here for initing
 
-- (void)drawRect:(NSRect)bounds inCIContext:(CIContext *)ctx;
+// called when needed by the view class to update the screen
+
+- (void)drawRect:(NSRect)bounds
 {
-    
-    
-    // this is a workaround to use openGlview subclass as there is no
-    // standard init call back once it is loaded into view.
+    //[self clearScreen:bounds];
+     //[self animateMe];
+    [self drawWaveForm:Ala];
+    [self drawWaveForm:Bsi];
+    [self drawWaveForm:Cdo];
+    [self drawWaveForm:Dre];
+    [self drawWaveForm:Emi];
+    [self drawWaveForm:Ffa];
+    [self drawWaveForm:Gsol];
 
-    if(!readyToDraw){
-        
-        readyToDraw = YES;
-        [self start];
-    }
-    
-    if (self.image != nil) {
    
-        // clear the screen before redraw
-        
-        CIFilter *filter = [CIFilter filterWithName:@"CIConstantColorGenerator" keysAndValues:@"inputColor", [CIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0], nil];
-        [self.imageAccumulator setImage:[filter valueForKey:@"outputImage"]];
-        
-            
-        [self setImage:[self.imageAccumulator image]];
-        
-        [self animateMe];
-        
-        [ctx drawImage:self.image inRect:bounds fromRect:bounds];
-    }
-
 }
 
 
 - (id)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self != nil) {
-        _brushSize = 1.0;
-        
-        _color = [NSColor colorWithDeviceRed:0.5 green:0.0 blue:1.0 alpha:.75];
-        
-        _brushFilter = [CIFilter filterWithName: @"CIRadialGradient" keysAndValues:
-                        @"inputColor1", [CIColor colorWithRed:1.0 green:1.0
-                                                         blue:1.0 alpha:0.0], @"inputRadius0", @0.0, nil];
-        
-        _compositeFilter = [CIFilter filterWithName: @"CISourceOverCompositing"];        
-        
-    }
     
-    readyToDraw = NO;
-   
+    if (self){
+        [self start];
+    }
     return self;
 }
 
 - (void)viewBoundsDidChange:(NSRect)bounds
 {
-   
-    if ((self.imageAccumulator != nil) && (CGRectEqualToRect (*(CGRect *)&bounds, [self.imageAccumulator extent]))) {
-        return;
-    }
-    
-    /* Create a new accumulator and composite the old one over the it. */
-     
-    CIImageAccumulator *newAccumulator = [[CIImageAccumulator alloc] initWithExtent:*(CGRect *)&bounds format:kCIFormatRGBA16];
-    CIFilter *filter = [CIFilter filterWithName:@"CIConstantColorGenerator" keysAndValues:@"inputColor", [CIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0], nil];
-    [newAccumulator setImage:[filter valueForKey:@"outputImage"]];
-    
-    if (self.imageAccumulator != nil)
-    {
-        filter = [CIFilter filterWithName:@"CISourceOverCompositing"
-                            keysAndValues:@"inputImage", [self.imageAccumulator image],
-                  @"inputBackgroundImage", [newAccumulator image], nil];
-        //[newAccumulator setImage:[filter valueForKey:@"outputImage"]];
-    }
-    
-    self.imageAccumulator = newAccumulator;
-    
-    [self setImage:[self.imageAccumulator image]];
-    
-   
+
     
 }
 
 
 
-
-
-
-
-- (void)mouseDragged:(NSEvent *)event
-{
-    CIFilter *brushFilter = self.brushFilter;
-    
-    NSPoint  loc = [self convertPoint:[event locationInWindow] fromView:nil];
-    [brushFilter setValue:@(self.brushSize) forKey:@"inputRadius1"];
-    
-    CIColor *cicolor = [[CIColor alloc] initWithColor:self.color];
-    [brushFilter setValue:cicolor forKey:@"inputColor0"];
-    
-    CIVector *inputCenter = [CIVector vectorWithX:loc.x Y:loc.y];
-    [brushFilter setValue:inputCenter forKey:@"inputCenter"];
-    
-    CIFilter *compositeFilter = self.compositeFilter;
-    
-    [compositeFilter setValue:[brushFilter valueForKey:@"outputImage"] forKey:@"inputImage"];
-    [compositeFilter setValue:[self.imageAccumulator image] forKey:@"inputBackgroundImage"];
-    
-    CGFloat brushSize = self.brushSize;
-    CGRect rect = CGRectMake(loc.x-brushSize, loc.y-brushSize, 2.0*brushSize, 2.0*brushSize);
-    
-    [self.imageAccumulator setImage:[compositeFilter valueForKey:@"outputImage"] dirtyRect:rect];
-    [self setImage:[self.imageAccumulator image] dirtyRect:rect];
-}
-
-
-- (void)mouseDown:(NSEvent *)event
-{
-    [self mouseDragged: event];
-}
 
 
 
