@@ -135,15 +135,18 @@
     CGContextSetRGBFillColor (myContext, 1, 0, 0, 1 );// 3
     
     //CGContextFillRect (myContext, CGRectMake (loc.x, loc.y, 1, 1));
-    NSRect dotRect = CGRectMake (loc.x, loc.y, 1, 1);
-    [[NSBezierPath bezierPathWithOvalInRect:NSInsetRect(dotRect, 2, 2)] fill];
+    NSRect dotRect = CGRectMake (loc.x, loc.y, 2, 2);
+    [[NSBezierPath bezierPathWithOvalInRect:dotRect] fill];
+    
     
 }
 
-- (void) clearScreen:(NSRect)bounds
+- (void) drawBackground:(NSRect)bounds
 {   
     CGContextRef myContext = [[NSGraphicsContext currentContext] graphicsPort];
-    CGContextClearRect (myContext, bounds);
+    //CGContextClearRect (myContext, bounds);
+    CGContextSetRGBFillColor (myContext, 0, 0, 0, 1 );// 3
+    CGContextFillRect (myContext, bounds);
 }
 
 
@@ -151,8 +154,8 @@
 
 - (void)drawRect:(NSRect)bounds
 {
-    //[self clearScreen:bounds];
-     //[self animateMe];
+    [self drawBackground:bounds];
+
     [self drawWaveForm:Ala];
     [self drawWaveForm:Bsi];
     [self drawWaveForm:Cdo];
