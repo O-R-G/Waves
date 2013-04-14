@@ -8,6 +8,8 @@
 
 #import <math.h>
 #import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
+#import <Cocoa/Cocoa.h>
 
 #define hAxis 0
 #define vAxis 1
@@ -20,6 +22,7 @@
     float hzLength; //pixes per 1 hz
     float waveHeight;
     float _sinOffset; //the sin value starting point offset (mostly for animation)
+    CGColorRef color; // color associated with this wave/freq
 
 }
 
@@ -37,6 +40,8 @@
 @property float hzLength;
 @property float sinOffset;
 @property float waveHeight;
+@property CGColorRef color;
+
 
 @end
 

@@ -84,13 +84,25 @@
     Cdo = [[WaveFormDef alloc ]initWithHz:2.62f withAmp:1.19f withHzLength:700.f];
      */
     Ala = [[WaveFormDef alloc ]initWithHz:2.2f withAmp:1.f withWaveLength:157.f*2.f];
+    Ala.color = CGColorCreateGenericRGB(.65, 0, .85, .75); // indigo or blue violet
+    
     Bsi = [[WaveFormDef alloc ]initWithHz:2.47f withAmp:1.f withWaveLength:140.f*2.f];
+    Bsi.color = CGColorCreateGenericRGB(.95, 0, .75, .75); // purple or red violet
+    
     Cdo = [[WaveFormDef alloc ]initWithHz:2.62f withAmp:1.f withWaveLength:132.f*2.f];
+    Cdo.color = CGColorCreateGenericRGB(.95, 0, 0, .75); // red
+    
     Dre = [[WaveFormDef alloc ]initWithHz:2.94f withAmp:1.f withWaveLength:117.f*2.f];
+    Dre.color = CGColorCreateGenericRGB(.95, .55, .25, .75); // orange
+    
     Emi = [[WaveFormDef alloc ]initWithHz:3.29f withAmp:1.f withWaveLength:105.f*2.f];
+    Emi.color = CGColorCreateGenericRGB(1, .95, 0, .75); // yellow
+    
     Ffa = [[WaveFormDef alloc ]initWithHz:3.49f withAmp:1.f withWaveLength:98.8f*2.f];
+    Ffa.color = CGColorCreateGenericRGB(.25, .95, .25, .75); // green
+    
     Gsol = [[WaveFormDef alloc ]initWithHz:3.92f withAmp:1.f withWaveLength:88.f*2.f];
-
+    Gsol.color = CGColorCreateGenericRGB(.2, .25, 1, .75); // blue
 
 	[self initUpdateTimer];
     
@@ -121,19 +133,19 @@
 {
     for(float i = 0; i < 2.f * M_PI; i+=.05){
         
-        [self drawDot:[waveForm findPointAt:(float)i xOffset:5 yOffset:200.f]];
+        [self drawDot:[waveForm findPointAt:(float)i xOffset:5 yOffset:200.f] dotColor:waveForm.color];
     }
     
          
     
 }
 
-- (void)drawDot:(NSPoint)loc
+- (void)drawDot:(NSPoint)loc dotColor:(CGColorRef)aColor
 {
    
     CGContextRef myContext = [[NSGraphicsContext currentContext] graphicsPort];
-    CGContextSetRGBFillColor (myContext, 1, 0, 0, 1 );// 3
-    
+    //CGContextSetRGBFillColor (myContext, 1, 0, 0, 1 );// 3
+    CGContextSetFillColorWithColor(myContext, aColor);
     //CGContextFillRect (myContext, CGRectMake (loc.x, loc.y, 1, 1));
     NSRect dotRect = CGRectMake (loc.x, loc.y, 2, 2);
     [[NSBezierPath bezierPathWithOvalInRect:dotRect] fill];

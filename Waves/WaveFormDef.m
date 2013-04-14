@@ -17,6 +17,7 @@
 @synthesize amp;
 @synthesize res;
 @synthesize hzLength;
+@synthesize color;
 
 int *a;  // holders for x and y
 int *b;
@@ -42,6 +43,9 @@ int *b;
     self.waveHeight = aHzLength / (2.f * M_PI);  //the natural px height of the wave derived from the hzLength
     
     self.sinOffset = 0.0;       // offset of wave pos
+    
+    self.color =  CGColorCreateGenericRGB(1, 1, 1, 1);
+    
     return self;
     
 }
@@ -58,6 +62,9 @@ int *b;
     self.waveHeight = aWaveLength / (2.f * M_PI);  //the natural px height of the wave derived from the hzLength
     
     self.sinOffset = 0.0;       // offset of wave pos
+    
+    self.color =  CGColorCreateGenericRGB(1, 1, 1, 1);
+
     return self;
     
 }
